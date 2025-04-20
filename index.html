@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Для Сони 💖</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background: linear-gradient(#ffe6ec, #fff0f5);
+      color: #4b2e2e;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+    .start-btn, .option-btn, .final-btn {
+      margin-top: 1.5rem;
+      background: #ff9aa2;
+      color: white;
+      padding: 0.75rem 2rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+    .start-btn:hover, .option-btn:hover, .final-btn:hover {
+      background: #ff758f;
+    }
+    .question {
+      display: none;
+    }
+    .question.active {
+      display: block;
+    }
+    img.invitation {
+      max-width: 100%;
+      border-radius: 15px;
+      margin-top: 1.5rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="card" id="quiz">
+    <div id="intro" class="question active">
+      <h1>Завтра будет год... 💘</h1>
+      <p>...как началась самая красивая глава моей жизни.<br>
+      Год, полный улыбок, нежности, шуток, воспоминаний и всего, что связано с тобой.<br>
+      И сегодня я приготовил для тебя маленькое приключение.
+      </p>
+      <p>Ты готова пройти его со мной? 💫</p>
+      <button class="start-btn" onclick="nextQuestion()">Поехали</button>
+    </div>
+
+    <!-- Вопросы будут добавлены позже -->
+
+    <div id="final" class="question">
+      <h1>Ты прошла всё приключение! 💌</h1>
+      <p>А теперь… маленький подарок для тебя.</p>
+      <a href="invite.png" target="_blank">
+        <button class="final-btn">Открыть приглашение</button>
+      </a>
+      <img src="invite.png" alt="Приглашение" class="invitation">
+    </div>
+  </div>
+
+  <script>
+    let current = 0;
+    const questions = document.querySelectorAll('.question');
+    let answers = [];
+
+    function nextQuestion() {
+      if (current < questions.length - 1) {
+        questions[current].classList.remove('active');
+        current++;
+        questions[current].classList.add('active');
+      }
+    }
+
+    function answer(choice) {
+      answers.push(choice);
+      nextQuestion();
+      if (current === questions.length - 1) {
+        setTimeout(() => {
+          console.log("Ответы Сони:", answers);
+        }, 300);
+      }
+    }
+  </script>
+</body>
+</html>
