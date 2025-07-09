@@ -1,240 +1,377 @@
+<!-- Обновлённый HTML-файл презентации "Миссия абитуриента" — визуально яркий, анимированный и расширенный -->
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Для Сони 💖</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Презентация - Миссия абитуриента</title>
+
+  <!-- Шрифт -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- Фоновая музыка -->
+  <audio id="bg-music" loop autoplay volume="0.2">
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c1dd21c320.mp3?filename=ambient-piano-112191.mp3" type="audio/mpeg">
+    Ваш браузер не поддерживает аудио.
+  </audio>
+
   <style>
+    /* === ОСНОВНОЕ ОФОРМЛЕНИЕ === */
     body {
       margin: 0;
-      font-family: 'Georgia', serif;
-      background: linear-gradient(#ffe6ec, #fff0f5);
-      color: #4b2e2e;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 2rem;
+      font-family: 'Montserrat', sans-serif;
+      background: #0d1440;
+      color: #eee;
       overflow-x: hidden;
-      position: relative;
-    }
-    .card {
-      background: white;
-      border-radius: 20px;
-      padding: 2rem;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-      max-width: 600px;
-      width: 100%;
-      text-align: center;
-      position: relative;
-      z-index: 2;
-    }
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-    p {
-      font-size: 1.2rem;
-      line-height: 1.6;
-    }
-    .btn {
-      margin-top: 1.5rem;
-      background: #ff9aa2;
-      color: white;
-      padding: 0.75rem 2rem;
-      font-size: 1rem;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-      display: inline-block;
-      margin: 0.5rem;
-    }
-    .btn:hover {
-      background: #ff758f;
-    }
-    .question {
-      display: none;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-      position: relative;
-    }
-    .question.active {
-      display: block;
-      animation: fadeIn 0.6s ease forwards;
-    }
-    @keyframes fadeIn {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-    .audio-btn {
-      margin-bottom: 1rem;
-      font-size: 0.9rem;
-      background: #ffd3dc;
-    }
-    .answer-list {
-      text-align: left;
-      margin-top: 1rem;
-      padding-left: 1rem;
-    }
-    .answer-list li {
-      margin-bottom: 0.5rem;
-    }
-    #results, #quiz {
-      display: none;
     }
 
-    /* Сердечки */
-    .heart {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: red;
-      transform: rotate(45deg);
-      animation: fall 10s linear infinite;
-      opacity: 0.6;
+    html {
+      scroll-behavior: smooth;
     }
-    .heart::before,
-    .heart::after {
+
+    /* === АНИМИРОВАННЫЙ ФОН === */
+    body::before {
       content: "";
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: red;
-      border-radius: 50%;
-    }
-    .heart::before {
-      top: -10px;
-      left: 0;
-    }
-    .heart::after {
-      left: -10px;
+      position: fixed;
       top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://media.giphy.com/media/3o7abKhOpu0NwenH3O/giphy.gif') repeat;
+      background-size: cover;
+      z-index: -1;
+      opacity: 0.08;
+      animation: bgPulse 20s infinite ease-in-out;
     }
-    @keyframes fall {
-      0% {
-        transform: translateY(-100px) rotate(45deg);
-        opacity: 0.8;
+
+    @keyframes bgPulse {
+      0%, 100% { opacity: 0.08; }
+      50% { opacity: 0.16; }
+    }
+
+    /* === СЛАЙДЫ === */
+    .slide {
+      display: none;
+      max-width: 860px;
+      margin: 60px auto;
+      padding: 40px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #1a237e, #0d1440);
+      box-shadow: 0 0 30px rgba(255, 87, 34, 0.6), 0 0 60px rgba(255, 111, 0, 0.2) inset;
+      transition: transform 0.5s, box-shadow 0.5s;
+    }
+
+    .slide.active {
+      display: block;
+      animation: fadeInSlide 1s ease;
+    }
+
+    @keyframes fadeInSlide {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* === ЗАГОЛОВКИ === */
+    h1, h2 {
+      margin-top: 0;
+      color: #ffcc80;
+      text-shadow: 0 0 8px #ffa726;
+      font-size: 2.4rem;
+    }
+
+    h1 {
+      font-size: 3.6rem;
+    }
+
+    p, li {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: #f1f1f1;
+    }
+
+    ul {
+      padding-left: 24px;
+    }
+
+    /* === КАРТИНКИ === */
+    img {
+      max-width: 100%;
+      border-radius: 20px;
+      margin-top: 25px;
+      box-shadow: 0 0 25px rgba(255, 111, 0, 0.6);
+      transition: transform 0.3s ease;
+    }
+
+    img:hover {
+      transform: scale(1.03);
+    }
+
+    /* === КНОПКИ НАВИГАЦИИ === */
+    .nav-buttons {
+      text-align: center;
+      margin: 30px 0 80px;
+    }
+
+    button {
+      background: linear-gradient(45deg, #ff5722, #ff8f00);
+      border: none;
+      padding: 16px 40px;
+      color: white;
+      font-size: 20px;
+      font-weight: 700;
+      border-radius: 30px;
+      cursor: pointer;
+      margin: 0 15px;
+      box-shadow: 0 6px 20px rgba(255, 111, 0, 0.6);
+      transition: all 0.3s ease;
+    }
+
+    button:hover:not(:disabled) {
+      background: linear-gradient(45deg, #ffa000, #ff6f00);
+      transform: scale(1.08);
+    }
+
+    button:disabled {
+      background: #666;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    /* === ЭФФЕКТЫ ДЛЯ ПЕРВОГО СЛАЙДА === */
+    #slide-1 {
+      text-align: center;
+      position: relative;
+    }
+
+    #slide-1 h1 {
+      color: #c0c0c0;
+      position: relative;
+      animation: shimmer 4s infinite linear;
+    }
+
+    #slide-1 h1::after {
+      content: "⭐";
+      position: absolute;
+      font-size: 3rem;
+      right: -55px;
+      top: 8px;
+      animation: starTwinkle 2.5s infinite alternate;
+      color: #f5f5f5;
+    }
+
+    @keyframes shimmer {
+      0%, 100% {
+        color: #c0c0c0;
+        text-shadow: 0 0 10px #fff, 0 0 20px #c0c0c0;
       }
-      100% {
-        transform: translateY(100vh) rotate(45deg);
-        opacity: 0;
+      50% {
+        color: #e0e0e0;
+        text-shadow: 0 0 15px #fff, 0 0 30px #bbdefb;
       }
     }
+
+    @keyframes starTwinkle {
+      0% { opacity: 0.6; transform: scale(1); }
+      100% { opacity: 1; transform: scale(1.4); }
+    }
+
+    #slide-1 .explanation {
+      margin-top: 30px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 20px;
+      font-size: 1.15rem;
+      line-height: 1.6;
+      color: #eee;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+      text-align: left;
+    }
+
+    /* === ДОП. СТИЛИ ДЛЯ АНТИРЕПЕТИТИВНОСТИ === */
+    .slide:nth-child(odd) {
+      background: linear-gradient(135deg, #0d1440, #1a237e);
+    }
+
+    .slide:nth-child(even) {
+      background: linear-gradient(135deg, #1a237e, #0d1440);
+    }
+
+    /* === ДОПОЛНИТЕЛЬНЫЙ КОНТРОЛЬ МУЗЫКИ === */
+    .audio-control {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;
+    }
+
+    .audio-control button {
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 20px;
+      background: #3949ab;
+      box-shadow: 0 4px 12px rgba(63, 81, 181, 0.5);
+    }
+
+    .audio-control button:hover {
+      background: #5c6bc0;
+    }
+
+    /* === РЕЗЕРВ ПОД РАСШИРЕНИЕ ДО 1000 СТРОК === */
+    /* Можно добавить анимации, эффекты частиц, переходы, кастомный курсор, интерактивные подсказки и т.д. */
+
   </style>
 </head>
 <body>
-  <audio id="bg-music" loop autoplay>
-    <source src="https://cdn.pixabay.com/audio/2023/03/21/audio_3c742c20d8.mp3" type="audio/mpeg">
-  </audio>
-  <button class="btn audio-btn" id="music-btn">🎵 Включить музыку</button>
 
-  <!-- Сердечки -->
-  <script>
-    for (let i = 0; i < 30; i++) {
-      const heart = document.createElement('div');
-      heart.classList.add('heart');
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDuration = 5 + Math.random() * 5 + 's';
-      document.body.appendChild(heart);
-    }
-  </script>
-
-  <div class="card">
-    <div id="intro">
-      <h1>Привет, Соня 💖</h1>
-      <p>Я сделал кое-что особенное для тебя. Готова пройти маленький путь через воспоминания, чувства и мечты?</p>
-      <button class="btn" onclick="startQuiz()">✨ Поехали! ✨</button>
-    </div>
-    <div id="quiz"></div>
-    <div id="results">
-      <h1>💖 Ты прошла всё — и теперь тебя ждёт сюрприз!</h1>
-      <ul id="answers-list" class="answer-list"></ul>
-      <p style="margin-top: 2rem; font-style: italic; font-size: 1.1rem;">
-        📸 <strong>Миссия для тебя:</strong> представь, что ты секретный агент любви 😎 Твоя задача — <strong>сфоткать свои ответы</strong> и отправить их мне. Это твой код доступа к сердцу 💌
-      </p>
-      <a href="invite.png" target="_blank">
-        <div style="font-size: 3rem;">🔥</div>
-      </a>
-    </div>
+<!-- === СЛАЙДЫ (1–8, как у тебя) — НЕ МЕНЯЕМ структуру === -->
+<div class="slide active" id="slide-1">
+  <h1>Твоя Миссия — Твой Успех</h1>
+  <p>Построй свою дорогу в колледж с ясной целью и вдохновением.</p>
+  <div class="explanation">
+    <p>📌 <strong>Цель и миссия — в чём разница?</strong></p>
+    <p>Цель — это как ваша <em>северная звезда</em>. Это то, к чему вы стремитесь в будущем.<br>
+    Например: «Хочу создавать технологии, которые помогут людям».</p>
+    <p>Миссия — это уже про здесь и сейчас. Это план, как вы собираетесь к этой звезде дойти.<br>
+    Какие шаги вы будете делать, какие ресурсы использовать.</p>
   </div>
+  <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80" alt="Мотивированный студент" />
+</div>
 
-  <script>
-    const musicBtn = document.getElementById('music-btn');
-    const music = document.getElementById('bg-music');
+<!-- Слайд 2 -->
+<div class="slide" id="slide-2">
+  <h2>Понимание целей и миссий</h2>
+  <ul>
+    <li>Цель — долгосрочные мечты и стремления</li>
+    <li>Миссия — план действий для достижения цели</li>
+  </ul>
+  <img src="https://images.unsplash.com/photo-1497493292307-31c376b6e479?auto=format&fit=crop&w=600&q=80" alt="Планирование" />
+</div>
 
-    musicBtn.addEventListener('click', () => {
-      if (music.paused) {
-        music.play().then(() => {
-          musicBtn.textContent = '🎶 Музыка играет';
-        }).catch(err => {
-          alert('Нажми ещё раз — браузер блокирует автоматический звук.');
-        });
-      } else {
-        music.pause();
-        musicBtn.textContent = '🎵 Включить музыку';
-      }
+<!-- Слайд 3 -->
+<div class="slide" id="slide-3">
+  <h2>Значимость заявлений для поступления в колледж</h2>
+  <ul>
+    <li>Личный брендинг</li>
+    <li>Фокус и направление</li>
+    <li>Связь с учреждением</li>
+  </ul>
+  <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80" alt="Успех" />
+</div>
+
+<!-- Слайд 4 -->
+<div class="slide" id="slide-4">
+  <h2>Как разработать цель и миссию</h2>
+  <ul>
+    <li>Саморефлексия: «Чего я хочу?»</li>
+    <li>Конкретность: избегай абстрактных фраз</li>
+    <li>Последовательность: цель и миссия должны совпадать</li>
+    <li>Получай обратную связь</li>
+    <li>Интегрируй в эссе, интервью, рекомендации</li>
+  </ul>
+  <img src="https://images.unsplash.com/photo-1499714608240-22fc6ad53fb2?auto=format&fit=crop&w=600&q=80" alt="Планирование и размышления" />
+</div>
+
+<!-- Слайд 5 -->
+<div class="slide" id="slide-5">
+  <h2>Упражнение: Определи свою цель и миссию</h2>
+  <ul>
+    <li>Шаг 1: Представь жизнь через 10 лет</li>
+    <li>Шаг 2: Запиши, что тебя вдохновляет</li>
+    <li>Шаг 3: Соедини цель и увлечения</li>
+    <li>Шаг 4: Определи шаги к этой цели — это твоя миссия</li>
+  </ul>
+  <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=600&q=80" alt="Вдохновение и движение к цели" />
+</div>
+
+<!-- Слайд 6 -->
+<div class="slide" id="slide-6">
+  <h2>Как сделать свои заявления яркими</h2>
+  <ul>
+    <li>Будь аутентичным</li>
+    <li>Говори конкретно, а не общими словами</li>
+    <li>Покажи рост: опиши, как ты пришёл к своей цели</li>
+  </ul>
+  <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80" alt="Яркое заявление" />
+</div>
+
+<!-- Слайд 7 -->
+<div class="slide" id="slide-7">
+  <h2>Эволюция целей и миссий</h2>
+  <ul>
+    <li>Цели могут меняться — это нормально</li>
+    <li>Колледж — пространство для поиска себя</li>
+    <li>Будь открыт к новым возможностям</li>
+  </ul>
+  <img src="https://images.unsplash.com/photo-1517685352821-92cf88aee5a5?auto=format&fit=crop&w=600&q=80" alt="Рост и изменения" />
+</div>
+
+<!-- ... предыдущие слайды ... -->
+
+<!-- Слайд 8 -->
+<div class="slide" id="slide-8">
+  <h2>Заключение</h2>
+  <ul>
+    <li>Миссия — это компас, а не клетка</li>
+    <li>Будь честен, ясен и живой в своих заявлениях</li>
+    <li>Твоя история — это то, что делает тебя уникальным</li>
+  </ul>
+  <img src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&w=600&q=80" alt="Заключение и вдохновение" />
+</div>
+
+
+
+<!-- === НАВИГАЦИЯ === -->
+<div class="nav-buttons">
+  <button id="prevBtn" disabled>Назад</button>
+  <button id="nextBtn">Вперед</button>
+</div>
+
+<!-- === КОНТРОЛЬ МУЗЫКИ === -->
+<div class="audio-control">
+  <button onclick="toggleMusic()">🎵 Музыка</button>
+</div>
+
+<!-- === JS-ПЕРЕКЛЮЧЕНИЕ СЛАЙДОВ + МУЗЫКА === -->
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  let current = 0;
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === index);
     });
+    prevBtn.disabled = (index === 0);
+    nextBtn.disabled = (index === slides.length - 1);
+  }
 
-    const questions = [
-      { q: 'Что я почувствовал, когда впервые тебя увидел?', a: 'Нервничал как школьник перед первым звонком', b: 'Был спокоен, но внутри всё светилось' },
-      { q: 'Наше самое волшебное свидание было…', a: 'Когда мы гуляли без плана, но с чувствами', b: 'Когда ты держала меня за руку и смотрела так, что мир исчезал' },
-      { q: 'Когда ты улыбаешься, я думаю…', a: 'Как же мне повезло', b: 'Вот она — причина моего счастья' },
-      { q: 'Если бы ты была временем суток, ты была бы…', a: 'Ранним утром с запахом кофе и надежды', b: 'Закатом, в котором хочется раствориться' },
-      { q: 'Если бы наша любовь была песней, она бы звучала как…', a: 'Тёплая гитарная мелодия под звёздами', b: 'Лёгкий джаз, от которого хочется кружиться' },
-      { q: 'Что я хочу чаще всего, когда думаю о тебе?', a: 'Обнять тебя и замолчать', b: 'Рассмешить, чтобы ты улыбалась' },
-      { q: 'С кем бы я хотел пережить всё — и хорошее, и трудное?', a: 'С той, кто держит мою душу так бережно — с тобой', b: 'С девушкой, чьё имя звучит как музыка — Соня' },
-      { q: 'Какая твоя мелочь сводит меня с ума?', a: 'Твоя привычка поправлять волосы', b: 'Как ты поднимаешь бровь, когда хочешь меня "перехитрить"' },
-      { q: 'Что для меня стало "домом"?', a: 'Твой голос в телефоне', b: 'Твоё плечо, когда я рядом' },
-      { q: 'Почему я делаю этот сайт?', a: 'Потому что я дурачок, но влюблённый дурачок', b: 'Потому что ты заслуживаешь волшебства — и я хочу быть его частью' },
-      { q: 'Когда я думаю о нашем будущем, я представляю…', a: 'Уютную кухню, кофе и нас в пижамах', b: 'Смешных детей с твоими глазами и моим характером' },
-      { q: 'Если бы любовь была цветом, ты была бы…', a: 'Цветом рассвета', b: 'Тёплым розово-золотым оттенком заката' },
-      { q: 'Что меня радует даже в плохой день?', a: 'Твоя смс: "Как ты?"', b: 'Мысленно прокрученные моменты с тобой' },
-      { q: 'Если бы ты стала фильмом, жанр был бы…', a: 'Романтическая комедия с неожиданными поворотами', b: 'Лёгкая драма, от которой хочется обнять весь мир' },
-      { q: 'Как ты действуешь на меня?', a: 'Успокаиваешь, как чашка чая в дождь', b: 'Волнуешь, как первое признание в любви' },
-      { q: 'Что я больше всего люблю в тебе?', a: 'Спокойствие и тепло, которое ты несёшь', b: 'Твою искренность и дерзость, особенно вместе' },
-      { q: 'Что я думал после первого "пока" по телефону?', a: 'Уже скучаю...', b: 'Почему звонки не бесконечны?' },
-      { q: 'Ты — моя…', a: 'История, которую хочется перечитывать', b: 'Лучшая случайность в моей жизни' },
-      { q: 'С кем я хочу встречать дни рождения, Новый год, все-все дни?', a: 'С тобой, даже если просто дома и в носках', b: 'С тобой, хоть на краю света' },
-      { q: 'Что бы я сказал себе год назад?', a: 'Ты не представляешь, как тебе повезёт', b: 'Береги её. Ты встретил настоящее' }
-    ];
-
-    const answers = [];
-    const quizDiv = document.getElementById('quiz');
-    let current = 0;
-
-    function showQuestion(index) {
-      quizDiv.innerHTML = '';
-      const q = document.createElement('div');
-      q.className = 'question active';
-      q.innerHTML = `
-        <h2>💌 Вопрос ${index + 1}</h2>
-        <p>${questions[index].q}</p>
-        <button class="btn" onclick="selectAnswer('🅐: ${questions[index].a.replace(/"/g, '&quot;')}')">🅐 ${questions[index].a}</button>
-        <button class="btn" onclick="selectAnswer('🅑: ${questions[index].b.replace(/"/g, '&quot;')}')">🅑 ${questions[index].b}</button>
-      `;
-      quizDiv.appendChild(q);
+  prevBtn.addEventListener('click', () => {
+    if (current > 0) {
+      current--;
+      showSlide(current);
     }
+  });
 
-    function startQuiz() {
-      document.getElementById('intro').style.display = 'none';
-      quizDiv.style.display = 'block';
-      showQuestion(current);
-    }
-
-    window.selectAnswer = function(option) {
-      answers.push(`Вопрос ${current + 1}: ${option}`);
+  nextBtn.addEventListener('click', () => {
+    if (current < slides.length - 1) {
       current++;
-      if (current < questions.length) {
-        showQuestion(current);
-      } else {
-        quizDiv.style.display = 'none';
-        const list = document.getElementById('answers-list');
-        list.innerHTML = answers.map(a => `<li>${a}</li>`).join('');
-        document.getElementById('results').style.display = 'block';
-      }
-    };
-  </script>
+      showSlide(current);
+    }
+  });
+
+  showSlide(current);
+
+  // МУЗЫКА
+  const music = document.getElementById('bg-music');
+  function toggleMusic() {
+    if (music.paused) {
+      music.play();
+    } else {
+      music.pause();
+    }
+  }
+</script>
+
 </body>
 </html>
